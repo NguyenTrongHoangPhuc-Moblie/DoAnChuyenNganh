@@ -14,9 +14,12 @@ use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/blog', function () {
+    return view('blog');
+});
 //Route::get('/', [AuthController::class, 'redirectToHome'])->name('redirect');
 // User Authentication Routes
-Route::get('/login', [UserLoginController::class, 'index'])->name('login')->middleware('clear_cookies');;
+Route::get('/login', [UserLoginController::class, 'index'])->name('login')->middleware('clear_cookies');
 Route::post('/check', [UserLoginController::class, 'check'])->name('check');
 Route::get('/register', [UserRegistationController::class, 'create'])->name('register');
 Route::post('/register', [UserRegistationController::class, 'store'])->name('user.register');

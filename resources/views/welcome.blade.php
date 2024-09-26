@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+@extends('layout')
+@section('content')
+
+<div>
+    <h1>Welcome To Home</h1>
+</div>
+
+<!-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -15,4 +22,6 @@
     <body">
         <div class="alert alert-success" role="alert"></div>
     </body>
-</html>
+</html> -->
+
+@endsection
