@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use App\Models\Accounts;
+use DateTime;
 
 class GoogleAuthController extends Controller
 {
@@ -19,15 +21,16 @@ class GoogleAuthController extends Controller
             $google_user = Socialite::driver('google')->user();
             //dd($google_user);
 
-            $user = User::where('google_id', $google_user->getId())->first();
+            $user = Accounts::where('google_id', $google_user->getId())->first();
 
             if (!$user) {
-                $new_user = User::updateOrCreate([
-                    'email' => $google_user['email'],
+                $new_user = Accounts::updateOrCreate([
+                    'username' => $google_user['email'],
                 ], [
-                    'name' => $google_user['name'],
                     'google_id' => $google_user['id'],
-                    'password' => encrypt('#N17t052003')
+                    'password' => encrypt('123'),
+                    'created_at' => new DateTime(),
+                    'updated_at' => new DateTime(),
                 ]);
 
                 Auth::login($new_user);

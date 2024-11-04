@@ -21,9 +21,9 @@ return new class extends Migration
                 ->after('two_factor_secret')
                 ->nullable();
 
-            $table->text('google_id')
-                ->after('email')
-                ->nullable();
+            // $table->text('google_id')
+            //     ->after('email')
+            //     ->nullable();
 
             if (Fortify::confirmsTwoFactorAuthentication()) {
                 $table->timestamp('two_factor_confirmed_at')

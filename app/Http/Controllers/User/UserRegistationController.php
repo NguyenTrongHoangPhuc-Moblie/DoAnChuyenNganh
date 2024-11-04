@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Models\Accounts;
+use Illuminate\Database\QueryException;
+use DateTime;
 
 class UserRegistationController extends Controller
 {
@@ -16,13 +18,18 @@ class UserRegistationController extends Controller
     }
     public function store(Request $request)
     {
-       $input = $request->all();
-       User::create([
-        'name' => $input['name'],
-        'email' => $input['email'],
-        'password' => Hash::make($input['password'])
-        
-      ]);
+        try {
+            $input = $request->all();
+            Accounts::create([
+             'username' => $input['email'],
+             'password' => Hash::make($input['password']),
+             'created_at' => new DateTime(),
+             'updated_at' => new DateTime(),
+           ]);
+        }catch(QueryException $e) {
+            return redirect()->back()->with('error', 'Error registering customer.');
+        }
+       
        return view('user.thank');
     }
 }

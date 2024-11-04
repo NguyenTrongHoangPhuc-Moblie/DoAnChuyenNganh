@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hash;
 use App\Models\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AdminLoginController extends Controller
 {
+    use AuthenticatesUsers;
     public function index()
     {
         return view('admin.login');

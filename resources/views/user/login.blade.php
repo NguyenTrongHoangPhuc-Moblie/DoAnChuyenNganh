@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout_login')
 @section('content')
 
 <div class="position-absolute top-50 start-50 translate-middle ">
@@ -48,7 +48,7 @@
                         <hr class="mt-3">
                         <div class="position-relative mt-3">
                             <a href="{{route('google.login')}}" class="start-50 translate-middle position-absolute btn btn-google">
-                                <img src="{{URL('storage/icons8-google-24.png')}}" />
+                                <img src="{{URL('storage/google.png')}}" />
                                 Google Login
                             </a>
                         </div>
@@ -57,7 +57,7 @@
             </form>
         </div>
         <div class="col-6">
-            <img src="{{ URL('storage/bg_login.jpg') }}" class="img-thumbnail border-0" alt="...">
+            <img src="{{ URL('storage/login.jpg') }}" class="img-thumbnail border-0" alt="...">
         </div>
     </div>
 

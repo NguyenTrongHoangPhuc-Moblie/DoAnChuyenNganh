@@ -1,11 +1,11 @@
-@extends('layout')
+@extends('layout_login')
 @section('content')
 
 <div class="position-absolute top-50 start-50 translate-middle ">
-    <form class="" action="{{ route('admin.register') }}" method="POST">
+    <form class="" action="{{ route('user.register') }}" method="POST">
         {!! csrf_field() !!}
         <div class="row">
-            <div class="col-8">
+            <div class="col-6">
                 <div id="err" style="color: red">
                     @if(session()->has('error'))
                     <div class="alert alert-danger">{{ session('error') }}</div>
@@ -33,12 +33,12 @@
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
             </div>
-            <div class="col-4 d-flex flex-column justify-content-center align-item-center">
+            <div class="col-6 d-flex flex-column justify-content-center align-item-center">
                 <button type="submit" class="btn btn-primary">Register</button>
                 <p class="text-center mt-5">OR</p>
                 <div class="position-relative mt-5 d-flex flex-row">
                     <a href="{{route('google.login')}}" class="start-50 translate-middle position-absolute btn btn-google">
-                        <img src="{{URL('storage/icons8-google-24.png')}}" />
+                        <img src="{{URL('storage/google.png')}}" />
                         Google Login
                     </a>
                 </div>

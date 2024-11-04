@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminRegistationController;
 use App\Http\Controllers\Admin\AdminDashBoardController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,10 +18,14 @@ Route::get('/', function () {
 Route::get('/blog', function () {
     return view('blog');
 });
+Route::get('/dashboard-admin', function(){
+    return view('admin/dashboard');
+});
+
 //Route::get('/', [AuthController::class, 'redirectToHome'])->name('redirect');
 // User Authentication Routes
-Route::get('/login', [UserLoginController::class, 'index'])->name('login')->middleware('clear_cookies');
-Route::post('/check', [UserLoginController::class, 'check'])->name('check');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('clear_cookies');
+Route::post('/check', [LoginController::class, 'check'])->name('check');
 Route::get('/register', [UserRegistationController::class, 'create'])->name('register');
 Route::post('/register', [UserRegistationController::class, 'store'])->name('user.register');
 //middleware implementation
@@ -53,3 +58,11 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
